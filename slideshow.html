@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width;initial-scale=1.0"/>
+<title>Slide Show</title>
+<link rel="stylesheet" href="slide.css" type="text/css"/>
+
+</head>
+<body>
+<div class="slideshow-container">
+<div class="slides fade">
+	<div class = "number">1 / 4</div>
+	<div><img src="slider/1.jpg"></div>
+       <div class = "text">Quotes</div>
+</div>
+<div class="slides fade">
+	<div class = "number">2 / 4</div>
+	<div><img src="slider/2.jpg"></div>
+	<div class = "text">Quotes2</div>
+</div>
+<div class="slides fade">
+	<div class = "number">3 / 4</div>
+	<div><img src="slider/3.JPG"></div>
+	<div class = "text">Quotes3</div>
+</div>
+<div class="slides fade">
+	<div class = "number">4 / 4</div>
+	<div><img src="slider/4.jpg"></div>
+	<div class = "text">Quotes4</div>
+</div>
+<a class="prev" onclick="plusIndex(-1)">&#10094;</a>
+<a class="next" onclick="plusIndex(+1)">&#10095;</a>
+</div>
+<br/>
+<div style="text-align:center;">
+<span class="dots" onclick="currentSlide(1)"></span>
+<span class="dots" onclick="currentSlide(2)"></span>
+<span class="dots" onclick="currentSlide(3)"></span>
+<span class="dots" onclick="currentSlide(4)"></span>
+</div>
+
+
+
+<script type="text/javascript">
+var slideIndex = 1;
+ showImage(slideIndex);
+function plusIndex(n){
+showImage(slideIndex += n);
+};
+function currentSlide(n){
+showImage(slideIndex = n);
+};
+function showImage(n){
+var slide = document.getElementsByClassName("slides");
+var dots =document.getElementsByClassName("dots");
+if(n > slide.length){ slideIndex =1};
+if(n < 1){slideIndex = slide.length};
+for(var i =0; i<slide.length; i++){
+slide[i].style.display = "none";
+};
+slide[slideIndex -1].style.display = "block";
+for(var i = 0; i < dots.length;i++){
+dots[i].className = dots[i].className.replace("active")
+};
+dots[slideIndex-1].className += " active ";
+}
+autoSlide();
+function autoSlide(){
+var slide = document.getElementsByClassName("slides");
+for(var i =0; i<slide.length; i++){
+slide[i].style.display = "none";
+};
+if(slideIndex > slide.length){slideIndex =1}
+slide[slideIndex -1].style.display = "block";
+slideIndex++;
+setTimeout(autoSlide,2000);
+}
+</script>
+</body>
+</html>
